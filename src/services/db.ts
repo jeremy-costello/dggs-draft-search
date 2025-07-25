@@ -1,7 +1,6 @@
 import { PGlite, type PGliteOptions, MemoryFS } from '@electric-sql/pglite';
 import { vector } from '@electric-sql/pglite/vector';
 import { embedText } from './embed';
-import { BASE_PATH } from './constants';
 import { type SearchResult } from './types.ts';
 
 const DB_NAME = 'standard.db';
@@ -10,7 +9,7 @@ let db: PGlite | null = null;
 export async function initDB(): Promise<PGlite> {
   if (db) return db;
 
-  const res = await fetch(`${BASE_PATH}/db/${DB_NAME}`);
+  const res = await fetch(`db/${DB_NAME}`);
   const blob = await res.blob();
   const file = new File([blob], DB_NAME, { type: "application/gzip" });
 

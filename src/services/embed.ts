@@ -1,5 +1,4 @@
 import { Wllama } from '@wllama/wllama';
-import { BASE_PATH } from './constants';
 
 export const EMBED_MODEL_REPO = 'nomic-ai/nomic-embed-text-v1.5-GGUF';
 export const EMBED_MODEL_FILE = 'nomic-embed-text-v1.5.Q4_K_M.gguf';
@@ -13,7 +12,7 @@ export function modelDownloadCallback(progress: { loaded: number, total: number 
 export async function initEmbedder(): Promise<void> {
   if (embedder) return;
 
-  const WLLAMA_WASM_PATH_MAIN = `${BASE_PATH}/wllama/`;
+  const WLLAMA_WASM_PATH_MAIN = `wllama/`;
 
   const WLLAMA_CONFIG_PATHS = {
     'single-thread/wllama.wasm': WLLAMA_WASM_PATH_MAIN + 'single.wasm',
