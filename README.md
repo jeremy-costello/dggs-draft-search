@@ -1,69 +1,16 @@
-# React + TypeScript + Vite
+# DGGS Standard Search
+Semantic Search on the [OGC API - Discrete Global Grid Systems - Part 1: Core](https://docs.ogc.org/DRAFTS/21-038r1.html) standard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Acccesible via [jeremy-costello.github.io/dggs-standard-search/](https://jeremy-costello.github.io/dggs-standard-search/)
 
-Currently, two official plugins are available:
+**Note: Initial loading time may be slow since [Wllama](https://github.com/ngxson/wllama) must download the [embedding model](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF/blob/main/nomic-embed-text-v1.5.Q4_K_M.gguf)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## How It Works
+- Scraped the standard using [requests](https://requests.readthedocs.io/en/latest/)
+- Extracted data from the standard using [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- Converted data to raw text and markdown
+- Generated (normalized) embeddings from the raw text using [llama.cpp](https://github.com/ggml-org/llama.cpp)
+- Inserted markdown and halfvec embeddings into a PostgreSQL database using [PGlite](https://github.com/electric-sql/pglite) and [pgvector](https://github.com/pgvector/pgvector)
+- Generated a [HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) index on the halfvec embeddings using inner product distance using [pgvector](https://github.com/pgvector/pgvector)
+- Query embeddings are generated client-side using [Wllama](https://github.com/ngxson/wllama) and similarity search is performed client-side using [PGlite](https://github.com/electric-sql/pglite)
+- Results are displayed with title linked to the section in the standard and optionally displayed formatted markdown 
