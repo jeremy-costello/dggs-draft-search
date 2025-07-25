@@ -1,1 +1,1 @@
-export const BASE_PATH = "dggs-standard-search";
+export const BASE_PATH = "dggs-draft-search";

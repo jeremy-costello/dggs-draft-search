@@ -1,9 +1,9 @@
 {
-  "name": "dggs-standard-search",
+  "name": "dggs-draft-search",
   "private": false,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://jeremy-costello.github.io/dggs-standard-search",
+  "homepage": "https://jeremy-costello.github.io/dggs-draft-search",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
