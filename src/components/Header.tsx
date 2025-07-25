@@ -4,7 +4,7 @@ const Header: React.FC = () => {
   return (
     <header style={{ marginBottom: '30px', textAlign: 'center' }}>
       <h1 style={{ fontSize: '1.75rem', fontWeight: 'bold', marginBottom: '5px' }}>
-        Semantic search for{' '}
+        Semantic Search for{' '}
         <a
           href="https://docs.ogc.org/DRAFTS/21-038r1.html"
           target="_blank"
