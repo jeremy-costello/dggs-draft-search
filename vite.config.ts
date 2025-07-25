@@ -4,7 +4,7 @@ import { BASE_PATH } from './src/services/constants.ts';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: `/${BASE_PATH}`,
+  base: `/${BASE_PATH}/`,
   plugins: [
     react()
   ],
