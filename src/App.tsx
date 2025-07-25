@@ -3,6 +3,8 @@ import { initEmbedder } from './services/embed.ts';
 import { initDB, searchSimilarArticles } from './services/db.ts';
 import { formatMarkdown } from './services/markdown.ts';
 import { type SearchResult } from './services/types.ts';
+import Header from './components/Header.tsx';
+import Footer from './components/Footer.tsx';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -56,6 +58,7 @@ function App() {
       minHeight: '100vh',
       boxSizing: 'border-box'
     }}>
+      <Header />
       <div style={{ marginBottom: '20px' }}>
         <input
           type="text"
@@ -124,6 +127,7 @@ function App() {
           )}
         </div>
       ))}
+      <Footer />
     </div>
   );
 }
