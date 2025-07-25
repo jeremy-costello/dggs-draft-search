@@ -3,7 +3,7 @@ Semantic Search on the [OGC API - Discrete Global Grid Systems - Part 1: Core](h
 
 Acccesible via [jeremy-costello.github.io/dggs-draft-search/](https://jeremy-costello.github.io/dggs-draft-search/)
 
-**Note: Initial loading time may be slow since [Wllama](https://github.com/ngxson/wllama) must download the [embedding model](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF/blob/main/nomic-embed-text-v1.5.Q4_K_M.gguf)
+*Loading time may be slow the first time you open the page since [Wllama](https://github.com/ngxson/wllama) must download the [embedding model](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF/blob/main/nomic-embed-text-v1.5.Q4_K_M.gguf). The embedding model will be cached upon download for future use.*
 
 ## How It Works
 - Scraped the draft using [requests](https://requests.readthedocs.io/en/latest/)
