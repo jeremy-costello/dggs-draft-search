@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
         <strong>Document License</strong><br />
         All search results are licensed under the OGC Document License Agreement.<br />
         Modifications have been made to document formatting, but no modifications have been made to document contents.<br />
-        To obtain the license agreement, visit{' '}
+        To view the license agreement, visit{' '}
         <a
           href="https://www.ogc.org/about-ogc/policies/document-license-agreement/"
           target="_blank"
